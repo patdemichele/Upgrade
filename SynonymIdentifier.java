@@ -323,7 +323,7 @@ public class SynonymIdentifier
 			this.w2 = word2;
 			
 			double[] implicitProb = implicitProb(w1, w2, r);
-			double[] d2 = patIsAGenius(w1, w2); //9 all except 6
+			double[] d2 = direct_product(w1, w2); //9 all except 6
 			double[] d3 = exp(n1, n2); //3 all
 			double[] d4 = imp(n1, n2); //1 all
 
@@ -390,7 +390,10 @@ public class SynonymIdentifier
 		   System.arraycopy(b, 0, c, aLen, bLen);
 		   return c;
 	}
-	public static double[] patIsAGenius(WordEntry w1, WordEntry w2)
+	// for each part of speech, computes the average of the products
+	// of number of relations between w1 and word X the the number of relations between
+	// w2 and word X, taken across all X.
+	public static double[] direct_product(WordEntry w1, WordEntry w2)
 	{
 		int j = 0;
 		double[] retval = new double[8];
